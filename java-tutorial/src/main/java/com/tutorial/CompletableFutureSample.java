@@ -2,9 +2,7 @@ package com.tutorial;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
 
 public class CompletableFutureSample {
     public static void main(String[] args) throws InterruptedException, ExecutionException {

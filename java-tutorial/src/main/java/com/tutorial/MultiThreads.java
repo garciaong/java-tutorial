@@ -1,5 +1,7 @@
 package com.tutorial;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -21,6 +23,21 @@ public class MultiThreads {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        List<MyCallable> callableTasks = new ArrayList<>();
+        callableTasks.add(new MyCallable("Task3"));
+        callableTasks.add(new MyCallable("Task4"));
+        List<Future<String>> tasksFuture = executor.invokeAll(callableTasks);
+
+        tasksFuture.parallelStream().forEach(future -> {
+            try {
+                System.out.println(future.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
 
         executor.shutdown();
     }
